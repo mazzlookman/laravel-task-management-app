@@ -44,13 +44,23 @@ Berikut adalah rute-rute utama pada aplikasi:
    ```bash
    composer install
    ```
+   
+3. Salin file .env.example menjadi .env:
+   ```bash
+   cp .env.example .env
+   ```
+
+4. Generate app key
+   ```bash
+   php artisan key:generate
+   ```
  
-3. Jalankan server pengembangan:
+5. Jalankan server pengembangan:
    ```bash
    php artisan serve
    ```
 
-4. Akses aplikasi di [http://localhost:8000](http://localhost:8000).
+6. Akses aplikasi di [http://localhost:8000](http://localhost:8000).
 
 ---
 Thanks. ✨
