@@ -1,64 +1,66 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Task Management Simple
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Task Management Simple ini adalah aplikasi sederhana untuk mengelola daftar tugas (to-do list) menggunakan Laravel 9. Aplikasi ini memiliki fitur autentikasi pengguna dan pengelolaan tugas.
 
-## About Laravel
+## Features
+- **Autentikasi User**
+  - Login untuk logged user.
+  - Logout dari sesi.
+- **Manajemen Tugas**
+  - Menampilkan daftar tugas.
+  - Menambah tugas baru.
+  - Menghapus tugas.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Tech Stack
+- **Backend**: Laravel 9
+- **Storage**: Session
+- **Middleware**: 
+  - `OnlyGuestMiddleware`: Membatasi akses untuk user yang sudah login.
+  - `OnlyMemberMiddleware`: Membatasi akses untuk user yang belum login.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Routes
+Berikut adalah rute-rute utama pada aplikasi:
+- **Homepage**: `GET /`  
+  Menampilkan halaman utama.
+  
+- **Autentikasi**:  
+  - `GET /login`: Menampilkan halaman login (hanya untuk guest).
+  - `POST /login`: Melakukan proses login (hanya untuk guest).
+  - `POST /logout`: Melakukan proses logout (hanya untuk logged user).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Manajemen Tugas**:  
+  - `GET /tasks`: Menampilkan daftar tugas (hanya untuk logged user).  
+  - `POST /tasks`: Menambahkan tugas baru (hanya untuk logged user).  
+  - `POST /tasks/{id}/delete`: Menghapus tugas berdasarkan ID (hanya untuk logged user).
 
-## Learning Laravel
+## How to Run?
+1. Clone repository ini:
+   ```bash
+   git clone https://github.com/mazzlookman/laravel-task-management-simple.git your-project-directory
+   cd your-project-directory
+   ```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+2. Install dependensi dengan Composer:
+   ```bash
+   composer install
+   ```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+3. Salin file .env.example menjadi .env:
+   ```bash
+   cp .env.example .env
+   ```
 
-## Laravel Sponsors
+4. Generate app key
+   ```bash
+   php artisan key:generate
+   ```
+ 
+5. Jalankan server pengembangan:
+   ```bash
+   php artisan serve
+   ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+6. Akses aplikasi di [http://localhost:8000](http://localhost:8000).
 
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+Thanks. ✨

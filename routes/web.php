@@ -13,8 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/template', 'template');
-
 Route::get("/", [\App\Http\Controllers\HomeController::class, "homePage"]);
 
 Route::controller(\App\Http\Controllers\UserController::class)->group(function () {
@@ -22,3 +20,10 @@ Route::controller(\App\Http\Controllers\UserController::class)->group(function (
     Route::post('/login', 'doLogin')->middleware(\App\Http\Middleware\OnlyGuestMiddleware::class);
     Route::post('/logout', 'doLogout')->middleware(\App\Http\Middleware\OnlyMemberMiddleware::class);
 });
+
+Route::controller(\App\Http\Controllers\TaskController::class)
+    ->middleware(\App\Http\Middleware\OnlyMemberMiddleware::class)->group(function () {
+        Route::get("/tasks", "index");
+        Route::post("/tasks", "add");
+        Route::post("/tasks/{id}/delete", "destroy");
+    });
