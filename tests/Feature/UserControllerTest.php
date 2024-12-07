@@ -13,6 +13,13 @@ class UserControllerTest extends TestCase
         $this->get("login")->assertSeeText("Login Page");
     }
 
+    function testLoginPageForMember(): void
+    {
+        $this->withSession(["email" => "blue@test.com"])
+            ->get("/login")
+            ->assertRedirect("/");
+    }
+
     function testLoginSuccess(): void
     {
         $this->post("/login", [
@@ -47,5 +54,11 @@ class UserControllerTest extends TestCase
             ->post("/logout")
             ->assertStatus(302)
             ->assertSessionMissing("email");
+    }
+
+    function testLogoutForGuest(): void
+    {
+        $this->post("/logout")
+            ->assertRedirect("/login");
     }
 }
