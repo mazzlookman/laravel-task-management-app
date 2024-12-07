@@ -11,7 +11,7 @@ class HomeController extends Controller
     function homePage(Request $request): RedirectResponse
     {
         if ($request->session()->exists("email")) {
-            return redirect("/todolist");
+            return redirect("/tasks");
         } else {
             return redirect("/login");
         }
